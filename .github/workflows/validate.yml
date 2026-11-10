@@ -1,0 +1,39 @@
+name: Validate Play Music static site
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Verify Cloudflare Pages files
+        run: |
+          test -s index.html
+          test -s 404.html
+          test -s _headers
+          test -s robots.txt
+          grep -q 'Play Music' index.html
+          grep -q 'youtube.com/embed/' index.html
+          grep -q '9UMxZofMNbA' index.html
+          grep -q 'localStorage' index.html
+          echo "Static site checks passed."
+      - name: Check inline JavaScript syntax
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          html=Path('index.html').read_text()
+          scripts=re.findall(r'<script(?:\s[^>]*)?>(.*?)</script>', html, re.DOTALL|re.IGNORECASE)
+          if len(scripts) != 1:
+              raise SystemExit('Expected one inline application script')
+          Path('/tmp/playmusic-script.js').write_text(scripts[0])
+          PY
+          node --check /tmp/playmusic-script.js

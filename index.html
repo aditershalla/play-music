@@ -32,27 +32,18 @@ body{padding-bottom:92px}
 .pm-option{width:100%;color:#f1eaff;background:none;border:0;border-radius:9px;padding:10px 12px;text-align:left;display:flex;gap:10px;align-items:center;font-weight:850;cursor:pointer}
 .pm-option:hover,.pm-option:focus-visible{background:#50415f}
 .pm-stationbadge{display:grid;place-items:center;border-radius:50%;width:29px;height:29px;flex:0 0 29px;color:#180c20;font-weight:900}
-.pm-video-drawer{position:fixed;z-index:49;right:18px;bottom:103px;width:min(480px,calc(100vw - 36px));background:#191625;border:1px solid #695472;box-shadow:0 16px 50px #000a;border-radius:17px;overflow:hidden;display:none}
-.pm-video-drawer.open{display:block}
-.pm-video-head{padding:11px 15px;display:flex;align-items:center;gap:10px;justify-content:space-between}
-.pm-video-head strong{font-size:12px}
-.pm-video-head button{border:1px solid #675374;border-radius:8px;background:#33283d;color:#fff;padding:5px 11px}
-.pm-video{background:#07070b;aspect-ratio:16/9;width:100%;min-height:200px}
-.pm-video iframe{display:block;border:0;width:100%;height:100%;min-height:200px}
-.pm-video-help{padding:10px 14px;color:#b6a9c3;font-size:11px;display:flex;align-items:center;justify-content:space-between;gap:7px;flex-wrap:wrap}
-.pm-video-help a{color:#edbffa;text-underline-offset:3px}
 .pm-feedback{position:fixed;z-index:60;bottom:102px;left:20px;background:#30233e;color:#ffdeee;padding:9px 13px;border:1px solid #a174a9;border-radius:12px;max-width:min(470px,calc(100vw - 40px));display:none;font-size:12px}
 .pm-feedback.show{display:block}
 .pm-iconbtn:focus-visible,.pm-dropbtn:focus-visible,.pm-option:focus-visible{outline:2px solid #f1b1dd;outline-offset:2px}
-@media(max-width:760px){body{padding-bottom:138px}.pm-dock{min-height:132px;flex-wrap:wrap;gap:9px;padding:10px 13px;justify-content:space-between}.pm-art{width:40px;height:40px;flex-basis:40px;font-size:19px}.pm-details{flex:1 1 calc(100% - 110px)}.pm-controls{order:2;justify-content:center;gap:6px;flex:1}.pm-drop{order:3}.pm-dropbtn{min-width:130px}.pm-volume input{width:62px}.pm-video-drawer{bottom:144px}.pm-feedback{bottom:145px}.pm-live{font-size:8px}footer{padding-bottom:175px}}
-@media(max-width:440px){.pm-volume input{width:52px}.pm-iconbtn{width:35px;height:35px}.pm-mainplay{width:45px;height:45px}.pm-dock{gap:6px}.pm-dropbtn{padding:9px 8px;font-size:11px;min-width:120px}.pm-video-drawer{right:9px;width:calc(100vw - 18px)}}
+@media(max-width:760px){body{padding-bottom:138px}.pm-dock{min-height:132px;flex-wrap:wrap;gap:9px;padding:10px 13px;justify-content:space-between}.pm-art{width:40px;height:40px;flex-basis:40px;font-size:19px}.pm-details{flex:1 1 calc(100% - 110px)}.pm-controls{order:2;justify-content:center;gap:6px;flex:1}.pm-drop{order:3}.pm-dropbtn{min-width:130px}.pm-volume input{width:62px}.pm-feedback{bottom:145px}.pm-live{font-size:8px}footer{padding-bottom:175px}}
+@media(max-width:440px){.pm-volume input{width:52px}.pm-iconbtn{width:35px;height:35px}.pm-mainplay{width:45px;height:45px}.pm-dock{gap:6px}.pm-dropbtn{padding:9px 8px;font-size:11px;min-width:120px}}
 
 </style>
 </head>
 <body>
 <header>
 <a class="logo" href="#"><span class="logomark">▶</span><span>playmusic<small>.</small></span></a>
-<nav><a href="#">Home</a><a href="#stations">Stations</a><a href="#about">About</a><a href="#settings">My YouTube streams</a><button class="pill" id="listenTop">▶ Listen now</button></nav>
+<nav><a href="#">Home</a><a href="#stations">Stations</a><a href="#about">About</a><a href="#settings">My audio sources</a><button class="pill" id="listenTop">▶ Listen now</button></nav>
 </header>
 <main class="main">
 <section class="hero">
@@ -60,7 +51,7 @@ body{padding-bottom:92px}
 <div style="padding:40px"><div class="vinyl"><div class="orbit"></div></div></div>
 </section>
 <section class="section" id="stations">
-<div class="sectionhead"><div><div class="eyebrow">CHOOSE YOUR FREQUENCY</div><h2>Our stations<span style="color:#bca3ee">.</span></h2></div><p>One sound for every mood. Choose your channel and enjoy it through the official YouTube player.</p></div>
+<div class="sectionhead"><div><div class="eyebrow">CHOOSE YOUR FREQUENCY</div><h2>Our stations<span style="color:#bca3ee">.</span></h2></div><p>One sound for every mood. Choose your channel and listen from the bottom player.</p></div>
 <div class="cards">
 <article class="station gold"><div class="tag">Timeless favorites</div><h3>Play Gold</h3><p>Golden classics and feel-good nostalgia, whenever you need it.</p><span class="symbol">G</span><button class="listen" data-play="gold">▶ Listen</button><span class="state" data-state="gold">Add YouTube link</span></article>
 <article class="station mix"><div class="tag">The energy</div><h3>Play Mix</h3><p>Pop, upbeat sounds, and energy for your day.</p><span class="symbol">M</span><button class="listen" data-play="mix">▶ Listen</button><span class="state" data-state="mix">Add YouTube link</span></article>
@@ -68,17 +59,12 @@ body{padding-bottom:92px}
 </div>
 <div class="xmas-wrap" id="xmasWrap" hidden><article class="station xmas xmas-card"><div class="tag">Holiday special</div><h3>Play Xmas</h3><p>Warm winter music for Christmas and New Year.</p><span class="symbol">✳</span><button class="listen" data-play="xmas">▶ Listen</button><span class="state" data-state="xmas">Seasonal channel</span></article></div>
 </section>
-<section class="section about" id="about"><div><div class="eyebrow">PERSONAL RADIO EXPERIENCE</div><h2>Everyday moments deserve a better soundtrack.</h2><p>Play Music is your personal web hub for listening to selected YouTube radio channels. You can swap sources anytime and keep the site free to use at home.</p></div><div><div class="feature"><i>♪</i><div><strong>Three permanent channels</strong><span>Gold, Mix and Lounge. Xmas joins during the holiday season.</span></div></div><div class="feature"><i>▣</i><div><strong>Real YouTube video</strong><span>Streams run in YouTube's visible official embedded player, when allowed.</span></div></div><div class="feature"><i>♡</i><div><strong>Personal preferences</strong><span>Links you enter are saved only in this browser, never published to GitHub.</span></div></div></div></section>
-<section class="section" id="settings"><div class="eyebrow">PERSONALIZE YOUR MUSIC</div><h2>Your YouTube streams<span style="color:#bca3ee">.</span></h2><p class="note">Paste YouTube video or live URLs below. A channel owner can disable embedding; in that case use “Open on YouTube”. Only use content you're authorized to listen to.</p><div class="settings" id="form"></div><div class="status" id="saved" role="status"></div></section>
-<footer><strong>playmusic<span style="color:#bd98fb">.</span></strong><span>Private home listening hub · YouTube videos are provided by their original creators.</span></footer>
+<section class="section about" id="about"><div><div class="eyebrow">PERSONAL RADIO EXPERIENCE</div><h2>Everyday moments deserve a better soundtrack.</h2><p>Play Music is your personal listening hub for audio radio streams and music files from your device. Switch stations without leaving the page.</p></div><div><div class="feature"><i>♪</i><div><strong>Three permanent channels</strong><span>Gold, Mix and Lounge. Xmas joins during the holiday season.</span></div></div><div class="feature"><i>▣</i><div><strong>Audio-only listening</strong><span>No video panels. Use direct audio streams or files from your own device.</span></div></div><div class="feature"><i>♡</i><div><strong>Personal preferences</strong><span>Links you enter are saved only in this browser, never published to GitHub.</span></div></div></div></section>
+<section class="section" id="settings"><div class="eyebrow">PERSONALIZE YOUR MUSIC</div><h2>Your audio sources<span style="color:#bca3ee">.</span></h2><p class="note">Enter a direct HTTPS radio audio stream URL, or choose an audio file from your device. YouTube links cannot be played audio-only with the video hidden. Your saved sources remain in this browser.</p><div class="settings" id="form"></div><div class="status" id="saved" role="status"></div></section>
+<footer><strong>playmusic<span style="color:#bd98fb">.</span></strong><span>Private home listening hub · Personal listening · use authorized audio sources only.</span></footer>
 </main>
 
 <div class="pm-feedback" role="status" id="pmFeedback" aria-live="polite"></div>
-<aside class="pm-video-drawer" id="pmDrawer" aria-label="YouTube radio video">
- <div class="pm-video-head"><strong id="pmVideoTitle">PLAY MUSIC · OFFICIAL YOUTUBE PLAYER</strong><button id="pmHideVideo" type="button">Hide video panel ✕</button></div>
- <div class="pm-video" id="pmVideo"><div id="pmYoutube"></div></div>
- <div class="pm-video-help"><span>Video must stay visible for YouTube playback. If embedding is restricted, select another source.</span><span id="pmOriginal">Source: YouTube</span></div>
-</aside>
 <div class="pm-dock" id="pmDock" aria-label="Play Music radio player">
  <div class="pm-art" id="pmArtwork" aria-label="Station artwork">♫</div>
  <div class="pm-details"><strong id="pmStationName">Choose your radio</strong><span id="pmTrackName">Select Play Lounge to listen</span></div>
@@ -87,7 +73,7 @@ body{padding-bottom:92px}
   <button id="pmPlayPause" class="pm-iconbtn pm-mainplay" type="button" aria-label="Play or pause">▶</button>
   <button id="pmMute" class="pm-iconbtn" type="button" aria-label="Mute">🔊</button>
   <div class="pm-volume"><input id="pmVolume" aria-label="Volume" type="range" min="0" max="100" value="70"></div>
-  <button id="pmShowVideo" class="pm-iconbtn" type="button" aria-label="Show official video player" title="Show video">▣</button>
+  <button id="pmStop" class="pm-iconbtn" type="button" aria-label="Stop audio" title="Stop">■</button>
  </div>
  <div class="pm-drop">
   <button id="pmDropButton" class="pm-dropbtn" type="button" aria-expanded="false" aria-controls="pmStationMenu" aria-label="Choose Radio">Choose Radio <span aria-hidden="true">⌃</span></button>
@@ -98,137 +84,158 @@ body{padding-bottom:92px}
   </div>
  </div>
 </div>
+<audio id="pmAudio" preload="none"></audio>
 <script>
-(function(){
+(function() {
 "use strict";
-var names={gold:"PLAY GOLD",mix:"PLAY MIX",lounge:"PLAY LOUNGE",xmas:"PLAY XMAS"};
-var colors={gold:"#f0cb7f",mix:"#faa5cc",lounge:"#97dfd2",xmas:"#ffaaa9"};
-var defaults={gold:"",mix:"",lounge:"9UMxZofMNbA",xmas:""};
-var current="lounge",player=null,playerReady=false,playerLoaded=false,desiredPlay=false,hasSelected=false,activeId="",timer=0;
+var names={mix:"PLAY MIX",gold:"PLAY GOLD",lounge:"PLAY LOUNGE",xmas:"PLAY XMAS"};
+var colors={mix:"#faa5cc",gold:"#f0cb7f",lounge:"#97dfd2",xmas:"#ffaaa9"};
+var current="lounge", selected=false, lastPlaying=false, fileSources={}, timer=null;
+var audio=document.getElementById("pmAudio");
 var $=function(id){return document.getElementById(id)};
-var now=new Date(),month=now.getMonth()+1,day=now.getDate();
-$("xmasWrap").hidden=!(month===12||(month===1&&day<=7));
-function youtubeId(input){
-  if(!input)return "";
-  var s=input.trim();
-  if(/^[a-zA-Z0-9_-]{11}$/.test(s))return s;
-  try{
-    var u=new URL(s),host=u.hostname.toLowerCase();
-    if(!["youtube.com","www.youtube.com","m.youtube.com","music.youtube.com","youtu.be","www.youtube-nocookie.com"].includes(host))return "";
-    var id=host==="youtu.be"?u.pathname.split("/")[1]:u.searchParams.get("v");
-    if(!id){var match=u.pathname.match(/^\/(?:live|embed|shorts)\/([a-zA-Z0-9_-]{11})/);id=match&&match[1]}
-    return id&&/^[a-zA-Z0-9_-]{11}$/.test(id)?id:"";
-  }catch(e){return ""}
+var today=new Date(),m=today.getMonth()+1,d=today.getDate();
+$("xmasWrap").hidden=!(m===12||(m===1&&d<=7));
+audio.volume=.7;
+
+function getSaved(key){
+ try{return localStorage.getItem("pm-audio-"+key)||""}catch(e){return ""}
 }
-function getId(station){try{var saved=localStorage.getItem("pm-yt-"+station);return saved===null?defaults[station]:saved}catch(e){return defaults[station]}}
-function putId(station,id){try{localStorage.setItem("pm-yt-"+station,id);return true}catch(e){return false}}
-function feedback(msg){$("pmFeedback").textContent=msg;$("pmFeedback").classList.add("show");clearTimeout(timer);timer=setTimeout(function(){$("pmFeedback").classList.remove("show")},5500)}
-function showDrawer(){ $("pmDrawer").classList.add("open");$("pmShowVideo").setAttribute("aria-label","Hide official video player") }
-function hideDrawer(){
- if(hasSelected&&desiredPlay){feedback("The official YouTube video must remain visible while playing. Pause first to close the panel.");return}
- $("pmDrawer").classList.remove("open");$("pmShowVideo").setAttribute("aria-label","Show official video player");
+function save(key,value){
+ try{localStorage.setItem("pm-audio-"+key,value);return true}catch(e){return false}
 }
-function updateArtwork(station,id){
- var el=$("pmArtwork");el.replaceChildren();el.style.background="linear-gradient(135deg,"+colors[station]+",#79629f)";
- if(id){var thumb=document.createElement("img");thumb.src="https://i.ytimg.com/vi/"+id+"/hqdefault.jpg";thumb.alt=names[station]+" YouTube video thumbnail";thumb.style.cssText="display:block;width:100%;height:100%;object-fit:cover;border-radius:11px";thumb.onerror=function(){el.textContent=station[0].toUpperCase()};el.appendChild(thumb)}else el.textContent=station[0].toUpperCase();
- el.setAttribute("aria-label",names[station]+" artwork");
+function streamUrl(value){
+ if(!value)return "";
+ try{
+  var u=new URL(value.trim());
+  var host=u.hostname.toLowerCase();
+  if(u.protocol!=="https:"||!host||host==="youtube.com"||host==="www.youtube.com"||host.endsWith(".youtube.com")||host==="youtu.be"||host==="spotify.com"||host==="open.spotify.com"||host.endsWith(".spotify.com"))return "";
+  return u.href;
+ }catch(e){return ""}
 }
-function updateStates(){Object.keys(names).forEach(function(k){var el=document.querySelector('[data-state="'+k+'"]');if(el)el.textContent=getId(k)?"YouTube ready":"Add YouTube link"})}
-function safeCall(method,value){
- try{if(playerReady&&player&&typeof player[method]==="function"){if(value===undefined)player[method]();else player[method](value)}}catch(e){}
+function sourceFor(key){
+ if(fileSources[key])return fileSources[key];
+ var url=getSaved(key);
+ return url?{url:url,name:"Live audio stream",isFile:false}:null
 }
-function updateVideoInfo(){
- if(!playerReady||!playerLoaded)return;
- try{var video=player.getVideoData();if(video&&video.title)$("pmTrackName").textContent=video.title}catch(e){}
+function info(text){
+ var el=$("pmFeedback");el.textContent=text;el.classList.add("show");
+ clearTimeout(timer);timer=setTimeout(function(){el.classList.remove("show")},6000)
 }
-function setPlayIcon(playing){$("pmPlayPause").textContent=playing?"❚❚":"▶";$("pmPlayPause").setAttribute("aria-label",playing?"Pause radio":"Play radio")}
-function ensureAPI(){
- if(window.YT&&window.YT.Player){createPlayer();return}
- if(document.getElementById("pm-yt-api"))return;
- var script=document.createElement("script");script.id="pm-yt-api";script.src="https://www.youtube.com/iframe_api";script.async=true;
- script.onerror=function(){feedback("The YouTube player could not load. Check network or browser restrictions.")};
- document.head.append(script)
+function setIcon(playing){$("pmPlayPause").textContent=playing?"❚❚":"▶";$("pmPlayPause").setAttribute("aria-label",playing?"Pause radio":"Play radio")}
+function badgeState(){Object.keys(names).forEach(function(key){
+ var el=document.querySelector('[data-state="'+key+'"]');
+ if(el)el.textContent=sourceFor(key)?"Audio ready":"Add audio stream";
+})}
+function setBrand(key){
+ var art=$("pmArtwork");art.replaceChildren();
+ art.textContent=key==="xmas"?"X":key[0].toUpperCase();
+ art.style.background="linear-gradient(135deg,"+colors[key]+",#79629f)";
+ art.setAttribute("aria-label",names[key]+" logo");
+ $("pmStationName").textContent=names[key];
 }
-window.onYouTubeIframeAPIReady=function(){createPlayer()};
-function createPlayer(){
- if(player||!window.YT||!window.YT.Player)return;
- player=new YT.Player("pmYoutube",{
-  width:"480",height:"270",videoId:activeId,
-  playerVars:{playsinline:1,controls:1,rel:0,origin:location.origin},
-  events:{
-   onReady:function(event){
-    playerReady=true;
-    event.target.setVolume(+$("pmVolume").value);
-    if(desiredPlay&&activeId){event.target.loadVideoById(activeId)}
-    else if(activeId){event.target.cueVideoById(activeId)}
-   },
-   onStateChange:function(e){
-    var states=window.YT&&YT.PlayerState;
-    if(!states)return;
-    if(e.data===states.PLAYING){playerLoaded=true;desiredPlay=true;$("pmLive").textContent="LIVE";setPlayIcon(true);updateVideoInfo()}
-    else if(e.data===states.PAUSED||e.data===states.ENDED){desiredPlay=false;$("pmLive").textContent="RADIO";setPlayIcon(false);updateVideoInfo()}
-    else if(e.data===states.CUED){updateVideoInfo()}
-   },
-   onError:function(){desiredPlay=false;setPlayIcon(false);feedback("YouTube cannot play this video here. The owner may restrict embedding. Try another authorized source.")}
-  }
- })
+function updateStatus(){
+ if(audio.paused){setIcon(false);$("pmLive").textContent="RADIO"}
+ else{setIcon(true);$("pmLive").textContent=audio.src&&fileSources[current]&&fileSources[current].url===audio.src?"AUDIO":"LIVE"}
 }
-function select(station){
- if(!Object.prototype.hasOwnProperty.call(names,station))return;
- var id=getId(station);current=station;
- $("pmStationMenu").classList.remove("open");$("pmDropButton").setAttribute("aria-expanded","false");
- if(!id){$("saved").textContent="Please add a YouTube source for "+names[station]+".";
-  location.hash="#settings";feedback(names[station]+" has no YouTube source yet.");return}
- hasSelected=true;activeId=id;desiredPlay=true;playerLoaded=false;
- $("pmStationName").textContent=names[station];
- $("pmTrackName").textContent="Connecting to YouTube…";
- $("pmVideoTitle").textContent=names[station]+" · OFFICIAL YOUTUBE PLAYER";
- $("pmOriginal").textContent="YouTube source · "+id;
- updateArtwork(station,id);$("pmLive").textContent="LIVE";showDrawer();setPlayIcon(true);
- if(playerReady){safeCall("stopVideo");safeCall("loadVideoById",id)}
- else ensureAPI();
+function playCurrent(){
+ var src=sourceFor(current);
+ if(!src){
+   info("Add a direct radio stream URL or audio file for "+names[current]+" first.");
+   $("saved").textContent="Choose a local audio file or enter a direct HTTPS radio stream for "+names[current]+".";
+   document.getElementById("settings").scrollIntoView({behavior:"smooth",block:"start"});
+   return;
+ }
+ var wasSame=selected&&audio.src===src.url;
+ selected=true;setBrand(current);
+ $("pmTrackName").textContent=src.isFile?src.name:"Connecting to audio stream…";
+ if(!wasSame){audio.pause();audio.removeAttribute("src");audio.load();audio.src=src.url;audio.load()}
+ var p=audio.play();
+ if(p&&typeof p.catch==="function"){
+   p.catch(function(){setIcon(false);$("pmLive").textContent="RADIO";info("Audio playback failed. Check the source URL, HTTPS, and browser permissions.")});
+ }
+ updateStatus();
 }
-function togglePlay(){
- if(!hasSelected){select(getId(current)?current:"lounge");return}
- if(desiredPlay){desiredPlay=false;safeCall("pauseVideo");setPlayIcon(false)}
- else{desiredPlay=true;showDrawer();safeCall("playVideo");setPlayIcon(true)}
+function select(key){
+ if(!Object.prototype.hasOwnProperty.call(names,key))return;
+ $("pmStationMenu").classList.remove("open");
+ $("pmDropButton").setAttribute("aria-expanded","false");
+ if(selected){audio.pause();audio.removeAttribute("src");audio.load();selected=false}
+ current=key;setBrand(key);playCurrent();
+}
+function toggle(){
+ if(!selected||!audio.src){playCurrent();return}
+ if(audio.paused){
+  var promise=audio.play();
+  if(promise&&typeof promise.catch==="function")promise.catch(function(){info("Cannot start this audio. Try another direct stream or local file.")});
+ }else audio.pause()
 }
 function stop(){
- $("pmLive").textContent="RADIO";desiredPlay=false;safeCall("stopVideo");setPlayIcon(false);if(!hasSelected)return;
- $("pmTrackName").textContent="Stopped · click Play to listen";
+ audio.pause();audio.removeAttribute("src");audio.load();selected=false;
+ $("pmTrackName").textContent="Stopped · select Play to listen";
+ updateStatus();
 }
-document.querySelectorAll("[data-play]").forEach(function(el){el.addEventListener("click",function(){select(el.getAttribute("data-play"))})});
-$("listenTop").addEventListener("click",function(){select(getId(current)?current:"lounge")});
-$("listenHero").addEventListener("click",function(){select(getId(current)?current:"lounge")});
-$("pmPlayPause").addEventListener("click",togglePlay);
-$("pmMute").addEventListener("click",function(){
- if(!playerReady)return;
- try{if(player.isMuted()){player.unMute();$("pmMute").textContent="🔊";$("pmMute").setAttribute("aria-label","Mute")}
- else{player.mute();$("pmMute").textContent="🔇";$("pmMute").setAttribute("aria-label","Unmute")}}catch(e){}
+function setVolume(v){
+ audio.volume=Math.min(1,Math.max(0,v/100));
+ if(v>0&&audio.muted)audio.muted=false;
+ $("pmMute").textContent=(audio.muted||audio.volume===0)?"🔇":"🔊";
+ $("pmMute").setAttribute("aria-label",audio.muted?"Unmute":"Mute")
+}
+audio.addEventListener("playing",function(){
+ $("pmTrackName").textContent=(sourceFor(current)||{}).name||"Live audio stream";
+ updateStatus();
 });
-$("pmVolume").addEventListener("input",function(){safeCall("setVolume",+this.value);if(+this.value>0){safeCall("unMute");$("pmMute").textContent="🔊";$("pmMute").setAttribute("aria-label","Mute")}});
-$("pmShowVideo").addEventListener("click",function(){if($("pmDrawer").classList.contains("open"))hideDrawer();else if(hasSelected)showDrawer();else select("lounge")});
-$("pmHideVideo").addEventListener("click",hideDrawer);
+audio.addEventListener("pause",updateStatus);
+audio.addEventListener("waiting",function(){$("pmTrackName").textContent="Buffering audio…"});
+audio.addEventListener("error",function(){
+ if(!selected)return;
+ setIcon(false);$("pmLive").textContent="RADIO";
+ $("pmTrackName").textContent="Audio source unavailable";
+ info("Could not load this stream. The URL may block playback, be offline, or need a different format.");
+});
+audio.addEventListener("ended",function(){setIcon(false);$("pmLive").textContent="RADIO";$("pmTrackName").textContent="Playback finished"});
+document.querySelectorAll("[data-play]").forEach(function(b){b.addEventListener("click",function(){select(b.getAttribute("data-play"))})});
+$("listenTop").addEventListener("click",function(){select(current)});
+$("listenHero").addEventListener("click",function(){select(current)});
+$("pmPlayPause").addEventListener("click",toggle);
+$("pmStop").addEventListener("click",stop);
+$("pmMute").addEventListener("click",function(){audio.muted=!audio.muted;$("pmMute").textContent=audio.muted?"🔇":"🔊";$("pmMute").setAttribute("aria-label",audio.muted?"Unmute":"Mute")});
+$("pmVolume").addEventListener("input",function(){setVolume(Number(this.value))});
 $("pmDropButton").addEventListener("click",function(){$("pmStationMenu").classList.toggle("open");this.setAttribute("aria-expanded",String($("pmStationMenu").classList.contains("open")))});
-document.querySelectorAll("[data-switch]").forEach(function(el){el.addEventListener("click",function(){select(this.getAttribute("data-switch"))})});
+document.querySelectorAll("[data-switch]").forEach(function(b){b.addEventListener("click",function(){select(this.getAttribute("data-switch"))})});
 document.addEventListener("click",function(e){if(!e.target.closest(".pm-drop")){$("pmStationMenu").classList.remove("open");$("pmDropButton").setAttribute("aria-expanded","false")}});
-document.addEventListener("keydown",function(e){if(e.key==="Escape"){$("pmStationMenu").classList.remove("open");$("pmDropButton").setAttribute("aria-expanded","false");if(!desiredPlay)hideDrawer()}});
+document.addEventListener("keydown",function(e){if(e.key==="Escape"){$("pmStationMenu").classList.remove("open");$("pmDropButton").setAttribute("aria-expanded","false")}});
+
 var form=$("form");
-Object.keys(names).forEach(function(k){
+Object.keys(names).forEach(function(key){
  var row=document.createElement("div");row.className="setting";
- var label=document.createElement("label");label.textContent=names[k];label.htmlFor="yt-"+k;
- var inp=document.createElement("input");inp.id="yt-"+k;inp.placeholder="https://www.youtube.com/live/...";inp.value=getId(k)?"https://www.youtube.com/watch?v="+getId(k):"";
- var btn=document.createElement("button");btn.textContent="Save";btn.type="button";
- btn.addEventListener("click",function(){
-  var raw=inp.value.trim(),id=raw?youtubeId(raw):"";
-  if(raw&&!id){$("saved").textContent="Invalid YouTube URL for "+names[k];return}
-  if(!putId(k,id)){$("saved").textContent="Browser storage is disabled. Try a normal browser window.";return}
-  $("saved").textContent=names[k]+(id?" saved in this browser.":" cleared.");
-  inp.value=id?"https://www.youtube.com/watch?v="+id:"";updateStates();
-  if(hasSelected&&current===k&&id!==activeId){stop();hasSelected=false;$("pmTrackName").textContent="Source changed · choose station again";if($("pmDrawer").classList.contains("open"))hideDrawer()}
+ var label=document.createElement("label");label.textContent=names[key];label.htmlFor="pm-url-"+key;
+ var input=document.createElement("input");input.id="pm-url-"+key;input.type="url";
+ input.placeholder="https://radio.example.com/stream.mp3";input.value=getSaved(key);
+ var saveButton=document.createElement("button");saveButton.type="button";saveButton.textContent="Save";
+ saveButton.addEventListener("click",function(){
+   var raw=input.value.trim(),url=streamUrl(raw);
+   if(raw&&!url){$("saved").textContent="Use a direct HTTPS radio audio URL, not a YouTube/Spotify video link.";return}
+   if(!save(key,url)){$("saved").textContent="Browser storage is unavailable.";return}
+   $("saved").textContent=names[key]+(url?" stream saved in this browser.":" stream URL cleared.");
+   if(current===key&&selected)stop();
+   badgeState();
  });
- row.append(label,inp,btn);form.append(row)
+ row.append(label,input,saveButton);form.append(row);
+ var fileRow=document.createElement("div");fileRow.className="setting";
+ var localLabel=document.createElement("label");localLabel.textContent="Local audio";localLabel.htmlFor="pm-file-"+key;
+ var picker=document.createElement("input");picker.id="pm-file-"+key;picker.type="file";picker.accept="audio/*,.mp3,.m4a,.aac,.ogg,.wav";
+ picker.addEventListener("change",function(){
+  var file=picker.files&&picker.files[0];if(!file)return;
+  if(fileSources[key])URL.revokeObjectURL(fileSources[key].url);
+  fileSources[key]={url:URL.createObjectURL(file),name:file.name,isFile:true};
+  if(current===key&&selected)stop();
+  $("saved").textContent=names[key]+" local audio selected. Click Play. The file stays only in this browser session.";
+  badgeState();
+ });
+ var desc=document.createElement("span");desc.textContent="Choose file";desc.className="note";
+ fileRow.append(localLabel,picker,desc);form.append(fileRow);
 });
-updateStates();
+badgeState();
+setVolume(70);
 })();
 </script></body></html>

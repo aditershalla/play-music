@@ -77,7 +77,7 @@ body{padding-bottom:92px}
 <aside class="pm-video-drawer" id="pmDrawer" aria-label="YouTube radio video">
  <div class="pm-video-head"><strong id="pmVideoTitle">PLAY MUSIC · OFFICIAL YOUTUBE PLAYER</strong><button id="pmHideVideo" type="button">Hide video panel ✕</button></div>
  <div class="pm-video" id="pmVideo"><div id="pmYoutube"></div></div>
- <div class="pm-video-help"><span>Video must stay visible for YouTube playback. If embedding is restricted, select another source.</span><a id="pmOriginal" href="https://www.youtube.com/" rel="noopener noreferrer" target="_blank">View source details ↗</a></div>
+ <div class="pm-video-help"><span>Video must stay visible for YouTube playback. If embedding is restricted, select another source.</span><span id="pmOriginal">Source: YouTube</span></div>
 </aside>
 <div class="pm-dock" id="pmDock" aria-label="Play Music radio player">
  <div class="pm-art" id="pmArtwork" aria-label="Station artwork">♫</div>
@@ -183,7 +183,7 @@ function select(station){
  $("pmStationName").textContent=names[station];
  $("pmTrackName").textContent="Connecting to YouTube…";
  $("pmVideoTitle").textContent=names[station]+" · OFFICIAL YOUTUBE PLAYER";
- $("pmOriginal").href="https://www.youtube.com/watch?v="+id;
+ $("pmOriginal").textContent="YouTube source · "+id;
  updateArtwork(station,id);$("pmLive").textContent="LIVE";showDrawer();setPlayIcon(true);
  if(playerReady){safeCall("stopVideo");safeCall("loadVideoById",id)}
  else ensureAPI();

@@ -82,7 +82,7 @@ body{padding-bottom:92px}
 <div class="pm-dock" id="pmDock" aria-label="Play Music radio player">
  <div class="pm-art" id="pmArtwork" aria-label="Station artwork">♫</div>
  <div class="pm-details"><strong id="pmStationName">Choose your radio</strong><span id="pmTrackName">Select Play Lounge to listen</span></div>
- <span class="pm-live" id="pmLive" aria-label="Radio source">RADIO</span>
+ <span class="pm-live" id="pmLive" aria-label="Stream indicator">RADIO</span>
  <div class="pm-controls">
   <button id="pmPlayPause" class="pm-iconbtn pm-mainplay" type="button" aria-label="Play or pause">▶</button>
   <button id="pmMute" class="pm-iconbtn" type="button" aria-label="Mute">🔊</button>
@@ -128,9 +128,10 @@ function hideDrawer(){
  if(hasSelected&&desiredPlay){feedback("The official YouTube video must remain visible while playing. Pause first to close the panel.");return}
  $("pmDrawer").classList.remove("open");$("pmShowVideo").setAttribute("aria-label","Show official video player");
 }
-function updateArtwork(station){
- var el=$("pmArtwork");el.textContent=station[0].toUpperCase();el.style.background="linear-gradient(135deg,"+colors[station]+",#79629f)";
- el.setAttribute("aria-label",names[station]+" logo");
+function updateArtwork(station,id){
+ var el=$("pmArtwork");el.replaceChildren();el.style.background="linear-gradient(135deg,"+colors[station]+",#79629f)";
+ if(id){var thumb=document.createElement("img");thumb.src="https://i.ytimg.com/vi/"+id+"/hqdefault.jpg";thumb.alt=names[station]+" YouTube video thumbnail";thumb.style.cssText="display:block;width:100%;height:100%;object-fit:cover;border-radius:11px";thumb.onerror=function(){el.textContent=station[0].toUpperCase()};el.appendChild(thumb)}else el.textContent=station[0].toUpperCase();
+ el.setAttribute("aria-label",names[station]+" artwork");
 }
 function updateStates(){Object.keys(names).forEach(function(k){var el=document.querySelector('[data-state="'+k+'"]');if(el)el.textContent=getId(k)?"YouTube ready":"Add YouTube link"})}
 function safeCall(method,value){
@@ -164,8 +165,8 @@ function createPlayer(){
    onStateChange:function(e){
     var states=window.YT&&YT.PlayerState;
     if(!states)return;
-    if(e.data===states.PLAYING){playerLoaded=true;desiredPlay=true;setPlayIcon(true);updateVideoInfo()}
-    else if(e.data===states.PAUSED||e.data===states.ENDED){desiredPlay=false;setPlayIcon(false);updateVideoInfo()}
+    if(e.data===states.PLAYING){playerLoaded=true;desiredPlay=true;$("pmLive").textContent="LIVE";setPlayIcon(true);updateVideoInfo()}
+    else if(e.data===states.PAUSED||e.data===states.ENDED){desiredPlay=false;$("pmLive").textContent="RADIO";setPlayIcon(false);updateVideoInfo()}
     else if(e.data===states.CUED){updateVideoInfo()}
    },
    onError:function(){desiredPlay=false;setPlayIcon(false);feedback("YouTube cannot play this video here. The owner may restrict embedding. Try another authorized source.")}
@@ -183,7 +184,7 @@ function select(station){
  $("pmTrackName").textContent="Connecting to YouTube…";
  $("pmVideoTitle").textContent=names[station]+" · OFFICIAL YOUTUBE PLAYER";
  $("pmOriginal").href="https://www.youtube.com/watch?v="+id;
- updateArtwork(station);showDrawer();setPlayIcon(true);
+ updateArtwork(station,id);$("pmLive").textContent="LIVE";showDrawer();setPlayIcon(true);
  if(playerReady){safeCall("stopVideo");safeCall("loadVideoById",id)}
  else ensureAPI();
 }
@@ -193,7 +194,7 @@ function togglePlay(){
  else{desiredPlay=true;showDrawer();safeCall("playVideo");setPlayIcon(true)}
 }
 function stop(){
- desiredPlay=false;safeCall("stopVideo");setPlayIcon(false);if(!hasSelected)return;
+ $("pmLive").textContent="RADIO";desiredPlay=false;safeCall("stopVideo");setPlayIcon(false);if(!hasSelected)return;
  $("pmTrackName").textContent="Stopped · click Play to listen";
 }
 document.querySelectorAll("[data-play]").forEach(function(el){el.addEventListener("click",function(){select(el.getAttribute("data-play"))})});

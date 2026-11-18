@@ -1,24 +1,46 @@
-# Play Music
+# Play Music — personal audio-only radio player
 
-A personal home-listening website with three year-round station presets: Play Gold, Play Mix, and Play Lounge. Play Xmas appears seasonally. The site plays videos through YouTube's **official, visible embed** where the original creator allows embedding.
+A personal listening website with three permanent station presets: **Play Mix**, **Play Gold**, and **Play Lounge**, plus the seasonal **Play Xmas**.
 
-## Current status
+## Latest version
 
-- `index.html` is a standalone first deployment version. It can be deployed as a static website without a build step.
-- Play Lounge initially points to YouTube video `9UMxZofMNbA` supplied by the project owner.
-- Gold, Mix and Xmas YouTube links are configurable in the **My YouTube streams** section.
-- Links are stored in your browser's `localStorage`, not synchronized between devices.
-- If a creator disables embedding, use **Open on YouTube**. The website does not extract or restream audio.
-- No public live station streams, audio hosting, or AzuraCast server are included in this single-file edition.
+The former YouTube video drawer has been removed completely from the website. The fixed bottom player now uses one native HTML5 audio element with:
 
-## Cloudflare Pages deployment
+- Play / pause and stop
+- Station switching without a page refresh
+- Volume and mute controls
+- Audio status indicator
+- Audio file picker per station
+- Direct HTTPS audio stream URL per station (MP3, AAC, OGG or another format supported by the browser)
 
-1. Open Cloudflare dashboard → Workers & Pages → Create application → Pages → Connect to Git.
-2. Select GitHub repository `aditershalla/play-music` (branch `main`).
-3. Select a static site/no framework preset; **no build command**; use the repository root as output directory if supported. The file `index.html` is at the root.
-4. Deploy. Select a different Pages project name if `play-music` is already taken.
-5. If personal/private use is intended, configure **Cloudflare Access** before sharing the Pages URL. `noindex` is not an access control.
+### Setting up your own audio source
 
-## Rights and privacy
+At the **My audio sources** section, either:
 
-Use this as a personal listening hub. YouTube content belongs to the respective creators. Never use a downloaded YouTube audio stream as your own rebroadcast without necessary permissions. This GitHub repository is currently **public**; do not commit passwords, API keys, or private data.
+1. Paste an **HTTPS direct audio-stream URL** for a station, then press **Save**; or
+2. Choose your own MP3/M4A/audio file using the file picker for that station.
+
+Click the station's **Listen** button or select the station from **Choose Radio** at the bottom.
+
+Stream URLs are saved in your browser's local storage and aren't shared across devices. Local files stay in the current browser session only. They are *not* uploaded to GitHub or Cloudflare. No default audio stream is configured until you provide one.
+
+**Important:** The original Play Lounge source was a YouTube video (`9UMxZofMNbA`). YouTube's embedded-player policies don't permit using hidden-video audio playback. This source is no longer used by the new audio-only player. You can still listen to it on YouTube separately, or supply a legitimate direct radio audio stream instead. Personal use doesn't remove the YouTube player restrictions.
+
+## Cloudflare Pages
+
+The website is static and is deployed from the repository root (branch `main`) without a build command.
+
+- File: `index.html`
+- Framework preset: None
+- Build command: blank
+- Output directory: repository root
+
+After a push to GitHub, Cloudflare Pages should automatically deploy if Git integration is configured.
+
+## Privacy
+
+The GitHub repository and any unprotected Cloudflare Pages URL are public. The noindex tag and robots.txt are requests to search engines, **not access control**. Use Cloudflare Access or another authentication mechanism for a private website.
+
+## Music rights
+
+Use music and audio streams you're allowed to access. Do not extract YouTube audio or rebroadcast a copyrighted stream without permission.

@@ -21,10 +21,13 @@ jobs:
           test -s _headers
           test -s robots.txt
           grep -q 'Play Music' index.html
-          grep -q 'youtube.com/iframe_api' index.html
+          grep -q 'id="pmAudio"' index.html
+          grep -q 'pmStop' index.html
+          ! grep -q 'youtube.com/iframe_api' index.html
+          ! grep -q 'pm-video-drawer' index.html
           grep -q 'pmPlayPause' index.html
           grep -q 'pmStationMenu' index.html
-          grep -q '9UMxZofMNbA' index.html
+          grep -q 'pm-audio-' index.html
           grep -q 'localStorage' index.html
           echo "Static site checks passed."
       - name: Check inline JavaScript syntax
